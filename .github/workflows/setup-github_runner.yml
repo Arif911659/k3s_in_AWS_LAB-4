@@ -31,7 +31,7 @@ jobs:
     - name: Pulumi stack select
       run: |
         cd infra
-        Pulumi stack select arifhossaincse22/infra/k3s_in_AWS
+        Pulumi stack select arifhossaincse22/k3s_in_AWS_LAB-4/dev
     - name: Pulumi refresh
       run: |
         cd infra
