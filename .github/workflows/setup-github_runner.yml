@@ -41,3 +41,8 @@ jobs:
       run: |
         cd infra
         GIT_RUNNER_IP=$(pulumi stack output git_runner_public_ip)
+        
+    - name: SSH to Runner EC2 and install GitHub Runner
+      run: |
+        ssh -0 StrictHostKeyChecking=no ubuntu@${{ env.GIT_RUNNER_IP }} <<< 'EOF'
+        
