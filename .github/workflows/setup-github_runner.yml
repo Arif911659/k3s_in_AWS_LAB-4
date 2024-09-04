@@ -1,10 +1,13 @@
 name: Setup GitHub Runner and Ansible
 on:
-    workflow_run:
-      workflows: ["Deploy Infrastructure"]
-      types:
-        - completed
-          
+    # workflow_run:
+    #   workflows: ["Deploy Infrastructure"]
+    #   types:
+    #     - completed
+  push:
+    branches:
+      - main
+      - master     
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -41,8 +44,12 @@ jobs:
       run: |
         cd infra
         GIT_RUNNER_IP=$(pulumi stack output git_runner_public_ip)
-        
+        echo "GIT_RUNNER_IP=$GIT_RUNNER_IP" >> $GITHUB_ENV
+    - name: Set up SSH agent
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.PRIVATE_KEY_LAPTOP }}
+
     - name: SSH to Runner EC2 and install GitHub Runner
       run: |
         ssh -0 StrictHostKeyChecking=no ubuntu@${{ env.GIT_RUNNER_IP }} <<< 'EOF'
-        
