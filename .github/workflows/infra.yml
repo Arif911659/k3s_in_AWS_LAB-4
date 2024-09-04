@@ -75,3 +75,4 @@ jobs:
         echo "MASTER_IP=$MASTER_IP" >> $GITHUB_ENV 
         echo "WORKER1_IP=$WORKER1_IP" >> $GITHUB_ENV
         echo "WORKER2_IP=$WORKER2_IP" >> $GITHUB_ENV
+        echo "PUBLIC_KEY_LAPTOP=$PUBLIC_KEY_LAPTOP" >> $GITHUB_ENV
