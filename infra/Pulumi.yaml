@@ -1,4 +1,4 @@
-name: k3s_in_AWS_LAB-4
+name: infra
 runtime:
   name: python
   options:
